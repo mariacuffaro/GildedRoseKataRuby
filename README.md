@@ -47,7 +47,7 @@ Finished in 0.00069 seconds.
 ```
 As an innkeeper
 I want to know the quality of my Items
-So that I can be sure of Quality
+So that I know the value of them
 
 As an innkeeper
 I want to know how far away the sell by date is for an item
@@ -73,6 +73,3 @@ We have recently signed a supplier of conjured items. This requires an update to
 * “Conjured” items degrade in Quality twice as fast as normal items
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we’ll cover for you)."*
-
-## The brief:
-in the language of your choice. The aim is to practice good design in the language of your choice. Refactor the code in such a way that adding the new "conjured" functionality is easy.
