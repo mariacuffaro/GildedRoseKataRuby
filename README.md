@@ -8,6 +8,36 @@ Create a gemfile and add simplecov and rubocop to it.
 
 Run bundle install
 
+run rspec to run guilded_rose_spec.rb
+
+use following irb commands to run the texttest_fixtue.rb
+```
+2.5.0 :003 > require './lib/gilded_rose'
+2.5.0 :004 > require './spec/texttest_fixture.rb'
+```
+and to run guilded_rose_tests.rb
+```
+2.5.0 :001 > require './spec/gilded_rose_tests.rb'
+ => true
+2.5.0 :002 > exit
+```
+which will git the following output
+```
+Loaded suite irb
+Started
+.
+Finished in 0.00069 seconds.
+-----------------------------------------------------------------------------------------------------------------------------------
+1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+100% passed
+-----------------------------------------------------------------------------------------------------------------------------------
+1449.28 tests/s, 1449.28 assertions/s
+```
+
+
+
+
+
 
 
 # Gilded rose tech test
