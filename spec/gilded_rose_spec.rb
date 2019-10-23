@@ -29,7 +29,7 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
     end
-    xit 'increases the quality of Aged Brie items' do
+    it 'increases the quality of Aged Brie items' do
       items = [Item.new("Aged Brie", 3, 5)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(6)
