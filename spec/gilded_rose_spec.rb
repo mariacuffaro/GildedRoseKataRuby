@@ -14,7 +14,7 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].sell_in).to eq(2)
     end
-    xit "reduces the quality value of the input items" do
+    it "reduces the quality value of the input items" do
       items = [Item.new("item", 3, 2)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(1)
