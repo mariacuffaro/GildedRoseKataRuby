@@ -9,14 +9,23 @@ class GildedRose
     @items.each do |item|
       item.sell_in -= 1
       case item.name
-      when 'Aged Brie' then item.quality += 1
-      else
-        item.sell_in >= 0 ? item.quality -= 1 : item.quality -= 2
-        item.quality = 0 if item.quality < 0
+        when 'Aged Brie' then update_aged_brie_quality(item)
+        else update_standard_item_quality(item)
       end
     end
   end
 
+  private
+
+  def update_aged_brie_quality(item)
+    item.quality += 1 if item.quality < 50
+  end
+
+  def update_standard_item_quality(item)
+    item.sell_in >= 0 ? item.quality -= 1 : item.quality -= 2
+    item.quality = 0 if item.quality < 0
+  end
+  
 end
 
 class Item
