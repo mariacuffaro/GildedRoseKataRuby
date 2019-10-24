@@ -16,7 +16,7 @@ items = [
   Item.new("Conjured Mana Cake", 3, 6), # <-- :O
 ]
 
-days = 10
+days = 30
 if ARGV.size > 0
   days = ARGV[0].to_i + 1
 end
