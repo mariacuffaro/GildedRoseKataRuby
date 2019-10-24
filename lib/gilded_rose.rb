@@ -43,7 +43,8 @@ class GildedRose
   end
 
   def update_conjured(item)
-    item.quality -= 2
+    item.sell_in > SELL_BY_DATE ? item.quality -= 2 : item.quality -= 4
+    item.quality = 0 if item.quality < 0
   end
 
 end

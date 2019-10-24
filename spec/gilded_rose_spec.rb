@@ -94,12 +94,12 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
     end
-    xit "reduces the quality value by 4 of the conjured items once the sell by date reached" do
+    it "reduces the quality value by 4 of the conjured items once the sell by date reached" do
       items = [Item.new("Conjured", 0, 6)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(2)
     end
-    xit 'never reduces the quality of a conjured item once it is zero' do
+    it 'never reduces the quality of a conjured item once it is zero' do
       items = [Item.new("Conjured", 3, 0)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
