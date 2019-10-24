@@ -2,10 +2,10 @@ class GildedRose
 
   MAX_QUALITY = 50
   MIN_QUALITY = 0
-  SELL_BY_DATE = 0
-  QUALITY_CHANGE_AMOUNT = { 'Aged Brie' => [1, 2],
-                            'Conjured Mana Cake' => [-2, -4],
-                            'Default' => [-1, -2] }
+  SELL_BY = 0
+  QUALITY_CHANGE = { 'Aged Brie' => [1, 2],
+                     'Conjured Mana Cake' => [-2, -4],
+                     'Default' => [-1, -2] }
 
   def initialize(items)
     @items = items
@@ -29,19 +29,22 @@ class GildedRose
     end
   end
 
-  def update_standard(item)
-    QUALITY_CHANGE_AMOUNT.has_key?(item.name) ? key = item.name : key = 'Default'
-    if item.sell_in > SELL_BY_DATE
-      item.quality += QUALITY_CHANGE_AMOUNT[key][0]
-    else
-      item.quality += QUALITY_CHANGE_AMOUNT[key][1]
-    end
-  end
-
   def update_backstage(item)
     item.sell_in <= 10 ? item.quality += 2 : item.quality += 1
     item.quality += 1 if item.sell_in <= 5
-    item.quality = 0 if item.sell_in <= SELL_BY_DATE
+    item.quality = 0 if item.sell_in <= SELL_BY
+  end
+
+  def update_standard(item)
+    find_change_amounts(item)
+    item.sell_in > SELL_BY ?
+      item.quality += @before_sell_by : item.quality += @after_sell_by
+  end
+
+  def find_change_amounts(item)
+    QUALITY_CHANGE.has_key?(item.name) ? key = item.name : key = 'Default'
+    @before_sell_by = QUALITY_CHANGE[key][0]
+    @after_sell_by = QUALITY_CHANGE[key][1]
   end
 
   def validate_quality(item)
