@@ -21,7 +21,8 @@ class GildedRose
   def update(item)
     case item.name
       when 'Aged Brie' then update_aged_brie(item)
-      when 'Backstage passes to a TAFKAL80ETC concert' then update_backstage(item)
+      when 'Backstage passes to a TAFKAL80ETC concert'
+        then update_backstage(item)
       when 'Conjured Mana Cake' then update_conjured(item)
       else update_standard(item)
     end
@@ -35,14 +36,14 @@ class GildedRose
     item.sell_in > SELL_BY_DATE ? item.quality -= 1 : item.quality -= 2
   end
 
+  def update_conjured(item)
+    item.sell_in > SELL_BY_DATE ? item.quality -= 2 : item.quality -= 4
+  end
+
   def update_backstage(item)
     item.sell_in <= 10 ? item.quality += 2 : item.quality += 1
     item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in <= SELL_BY_DATE
-  end
-
-  def update_conjured(item)
-    item.sell_in > SELL_BY_DATE ? item.quality -= 2 : item.quality -= 4
   end
 
   def validate_quality(item)
