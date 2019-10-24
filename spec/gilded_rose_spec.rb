@@ -59,28 +59,48 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].sell_in).to eq(3)
     end
-    it 'Quality of backstage pass items increase by 1 when sell_in is > 10' do
+    it 'increases the quality of backstage pass items by 1 when sell_in is > 10' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(41)
     end
-    it 'Quality of backstage pass items increase by 2 when sell_in is <=10' do
+    it 'increases the quality of backstage pass items by 2 when sell_in is <=10' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(42)
     end
-    it 'Quality of backstage pass items increase by 3 when sell_in is <=5' do
+    it 'increases the quality of backstage pass items by by 3 when sell_in is <=5' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(43)
     end
-    it 'Quality of backstage pass items is zero once sell_in is zero' do
+    it 'sets quality of backstage pass to zero once sell_in is zero' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
     end
-    it 'Quality of backstage pass items is zero if sell_in is less than zero' do
+    it 'does not increase the quality of backstage pass items if sell_in is less than zero' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", -1, 0)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(0)
+    end
+    it "reduces the sellin value of the conjured items" do
+      items = [Item.new("Conjured", 3, 2)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].sell_in).to eq(2)
+    end
+    xit "reduces the quality value of the conjured items by 2" do
+      items = [Item.new("Conjured", 3, 2)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(1)
+    end
+    xit "reduces the quality value by 4 of the conjured items once the sell by date reached" do
+      items = [Item.new("Conjured", 0, 2)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(0)
+    end
+    xit 'never reduces the quality of a conjured item once it is zero' do
+      items = [Item.new("Conjured", 3, 0)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
     end
