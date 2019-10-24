@@ -13,7 +13,6 @@ class GildedRose
         when 'Backstage passes to a TAFKAL80ETC concert' then update_backstage_pass(item)
         else update_standard(item)
       end
-      item.sell_in -= 1
     end
   end
 
@@ -21,21 +20,25 @@ class GildedRose
 
   def update_aged_brie(item)
     item.quality += 1 if item.quality < 50
+    item.sell_in -= 1
   end
 
   def update_standard(item)
     item.sell_in > 0 ? item.quality -= 1 : item.quality -= 2
     item.quality = 0 if item.quality < 0
+    item.sell_in -= 1
   end
 
   def update_sulfuras(item)
     item.quality = item.quality
+    item.sell_in = item.sell_in
   end
 
   def update_backstage_pass(item)
     item.sell_in <= 10 ? item.quality += 2 : item.quality += 1
     item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in == 0
+    item.sell_in -= 1
   end
 
 end

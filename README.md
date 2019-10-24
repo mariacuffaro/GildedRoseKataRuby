@@ -14,6 +14,13 @@ These are the steps I took to get started...
 
 * As the tests were very limited I decided to write a full suite of tests before refactoing the code and eventually adding the new functionality.
 
+* After refactoring the code to get a basic suite of tests passing I ran a compare of the new and legacy code using the following commands
+
+* -> ruby 'spec/texttest_fixture.rb' > new__output.txt
+* -> ruby 'spec/texttest_fixture_legacy.rb' > legacy_output.txt
+* -> diff 'new_output.txt' 'legacy_output.txt' - this showed some differences which I used to create new test cases for the new code
+
+
 ## Test instructions
 
 run rspec to run guilded_rose_spec.rb
