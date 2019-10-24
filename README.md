@@ -16,7 +16,7 @@ These are the steps I took to get started...
 
 * After refactoring the code to get a basic suite of tests passing I ran a compare of the new and legacy code using the following commands
 
-* -> ruby 'spec/texttest_fixture.rb' > new__output.txt
+* -> ruby 'spec/texttest_fixture.rb' > new_output.txt
 * -> ruby 'spec/texttest_fixture_legacy.rb' > legacy_output.txt
 * -> diff 'new_output.txt' 'legacy_output.txt' - this showed some differences which I used to create new test cases for the new code
 
