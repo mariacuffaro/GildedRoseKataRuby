@@ -54,12 +54,12 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(42)
     end
-    xit 'Quality of backstage pass items increase by 3 when sell_in is <=5' do
+    it 'Quality of backstage pass items increase by 3 when sell_in is <=5' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(43)
     end
-    xit 'Quality of backstage pass items is zero once sell_in is zero' do
+    it 'Quality of backstage pass items is zero once sell_in is zero' do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 40)]
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
