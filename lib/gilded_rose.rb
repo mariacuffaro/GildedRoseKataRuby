@@ -3,6 +3,9 @@ class GildedRose
   MAX_QUALITY = 50
   MIN_QUALITY = 0
   SELL_BY_DATE = 0
+  QUALITY_CHANGE_AMOUNT = { 'Aged Brie' => [1, 2],
+                            'Conjured Mana Cake' => [-2, -4],
+                            'Default' => [-1, -2] }
 
   def initialize(items)
     @items = items
@@ -19,25 +22,20 @@ class GildedRose
   private
 
   def update(item)
-    case item.name
-      when 'Aged Brie' then update_aged_brie(item)
-      when 'Backstage passes to a TAFKAL80ETC concert'
-        then update_backstage(item)
-      when 'Conjured Mana Cake' then update_conjured(item)
-      else update_standard(item)
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      update_backstage(item)
+    else
+      update_standard(item)
     end
   end
 
-  def update_aged_brie(item)
-    item.sell_in > SELL_BY_DATE ? item.quality += 1 : item.quality += 2
-  end
-
   def update_standard(item)
-    item.sell_in > SELL_BY_DATE ? item.quality -= 1 : item.quality -= 2
-  end
-
-  def update_conjured(item)
-    item.sell_in > SELL_BY_DATE ? item.quality -= 2 : item.quality -= 4
+    QUALITY_CHANGE_AMOUNT.has_key?(item.name) ? key = item.name : key = 'Default'
+    if item.sell_in > SELL_BY_DATE
+      item.quality += QUALITY_CHANGE_AMOUNT[key][0]
+    else
+      item.quality += QUALITY_CHANGE_AMOUNT[key][1]
+    end
   end
 
   def update_backstage(item)
