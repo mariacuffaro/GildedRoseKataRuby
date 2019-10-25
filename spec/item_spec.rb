@@ -1,4 +1,4 @@
-require './lib/gilded_rose'
+require './lib/item'
 
 describe Item do
   subject { described_class.new("test item", 1, 3) }

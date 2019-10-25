@@ -1,3 +1,51 @@
+## Contents
+[Run/ test instructions](#Run/-test-instructions)
+[Sample irb](#Sample-irb)
+[Approach](#Approach)
+[User Stories](#User-Stories)
+[Specification](#Quality-and-value-should-be-updated-according-to-the-following-specification:-)
+
+## Run/ test instructions
+```
+git clone git@github.com:mariacuffaro/GildedRoseKataRuby.git
+cd GildedRoseKataRuby
+bundle install
+rspec #to run unit tests
+ruby 'spec/texttest_fixture.rb' > new_output.txt #to run fixture tests
+```
+### Sample irb
+```
+
+2.5.0 :001 > require './lib/item'
+ => true
+2.5.0 :002 > require './lib/gilded_rose'
+ => true
+2.5.0 :003 > items = [
+2.5.0 :004 >       Item.new("+5 Dexterity Vest", 10, 20),
+2.5.0 :005 >       Item.new("Aged Brie", 2, 0),
+2.5.0 :006 >       Item.new("Elixir of the Mongoose", 5, 7),
+2.5.0 :007 >       Item.new("Sulfuras, Hand of Ragnaros", 0, 80),
+2.5.0 :008 >       Item.new("Sulfuras, Hand of Ragnaros", -1, 80),
+2.5.0 :009 >       Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+2.5.0 :010 >       Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+
+2.5.0 :011 >       Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+2.5.0 :012 >       Item.new("Conjured Mana Cake", 3, 6)
+2.5.0 :013?>   ]
+ => [#<Item:0x00007fc2da82be60 @name="+5 Dexterity Vest", @sell_in=10, @quality=20>, #<Item:0x00007fc2da82be10 @name="Aged Brie", @sell_in=2, @quality=0>, #<Item:0x00007fc2da82bdc0 @name="
+Elixir of the Mongoose", @sell_in=5, @quality=7>, #<Item:0x00007fc2da82bd48 @name="Sulfuras, Hand of Ragnaros", @sell_in=0, @quality=80>, #<Item:0x00007fc2da82bcf8 @name="Sulfuras, Hand of
+ Ragnaros", @sell_in=-1, @quality=80>, #<Item:0x00007fc2da82bca8 @name="Backstage passes to a TAFKAL80ETC concert", @sell_in=15, @quality=20>, #<Item:0x00007fc2da82bc58 @name="Backstage pa
+sses to a TAFKAL80ETC concert", @sell_in=10, @quality=49>, #<Item:0x00007fc2da82bc08 @name="Backstage passes to a TAFKAL80ETC concert", @sell_in=5, @quality=49>, #<Item:0x00007fc2da82bbb8
+@name="Conjured Mana Cake", @sell_in=3, @quality=6>]
+2.5.0 :014 > GildedRose.update_quality(items)
+ => [#<Item:0x00007fc2da82be60 @name="+5 Dexterity Vest", @sell_in=9, @quality=19>, #<Item:0x00007fc2da82be10 @name="Aged Brie", @sell_in=1, @quality=1>, #<Item:0x00007fc2da82bdc0 @name="E
+lixir of the Mongoose", @sell_in=4, @quality=6>, #<Item:0x00007fc2da82bd48 @name="Sulfuras, Hand of Ragnaros", @sell_in=0, @quality=80>, #<Item:0x00007fc2da82bcf8 @name="Sulfuras, Hand of
+Ragnaros", @sell_in=-1, @quality=80>, #<Item:0x00007fc2da82bca8 @name="Backstage passes to a TAFKAL80ETC concert", @sell_in=14, @quality=21>, #<Item:0x00007fc2da82bc58 @name="Backstage pas
+ses to a TAFKAL80ETC concert", @sell_in=9, @quality=50>, #<Item:0x00007fc2da82bc08 @name="Backstage passes to a TAFKAL80ETC concert", @sell_in=4, @quality=50>, #<Item:0x00007fc2da82bbb8 @n
+ame="Conjured Mana Cake", @sell_in=2, @quality=4>]
+
+
+```
 # Approach
 
 These are the steps I took to get started...
@@ -22,36 +70,7 @@ These are the steps I took to get started...
 
 create new test cases for the new code
 
-* Final refactor to turn into class methods rather than instance methods so that calling  GildedRose.update_quality(items) rather than GildedRose.new(items).update_quality() 
-
-
-## Test instructions
-
-run rspec to run guilded_rose_spec.rb
-
-use following irb commands to run the texttest_fixtue.rb
-```
-2.5.0 :003 > require './lib/gilded_rose'
-2.5.0 :004 > require './spec/texttest_fixture.rb'
-```
-and to run guilded_rose_tests.rb
-```
-2.5.0 :001 > require './spec/gilded_rose_tests.rb'
- => true
-2.5.0 :002 > exit
-```
-which will git the following output
-```
-Loaded suite irb
-Started
-.
-Finished in 0.00069 seconds.
------------------------------------------------------------------------------------------------------------------------------------
-1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
-100% passed
------------------------------------------------------------------------------------------------------------------------------------
-1449.28 tests/s, 1449.28 assertions/s
-```
+* Final refactor to turn into class methods rather than instance methods so that calling  GildedRose.update_quality(items) rather than GildedRose.new(items).update_quality()
 
 
 # User Stories
