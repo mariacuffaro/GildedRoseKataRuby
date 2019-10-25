@@ -11,17 +11,15 @@ class GildedRose
     @items = items
   end
 
-  def update_quality
-    @items.each do |item|
+  def self.update_quality(items)
+    items.each do |item|
       item.name == 'Sulfuras, Hand of Ragnaros' ? next : update(item)
       validate_quality(item)
       item.sell_in -= 1
     end
   end
 
-  private
-
-  def update(item)
+  def self.update(item)
     if item.name == 'Backstage passes to a TAFKAL80ETC concert'
       update_backstage(item)
     else
@@ -29,25 +27,25 @@ class GildedRose
     end
   end
 
-  def update_backstage(item)
+  def self.update_backstage(item)
     item.sell_in <= 10 ? item.quality += 2 : item.quality += 1
     item.quality += 1 if item.sell_in <= 5
     item.quality = 0 if item.sell_in <= SELL_BY
   end
 
-  def update_standard(item)
+  def self.update_standard(item)
     find_change_amounts(item)
     item.sell_in > SELL_BY ?
-      item.quality += @before_sell_by : item.quality += @after_sell_by
+      item.quality += @before_sell_by_amt : item.quality += @after_sell_by_amt
   end
 
-  def find_change_amounts(item)
+  def self.find_change_amounts(item)
     QUALITY_CHANGE.has_key?(item.name) ? key = item.name : key = 'Default'
-    @before_sell_by = QUALITY_CHANGE[key][0]
-    @after_sell_by = QUALITY_CHANGE[key][1]
+    @before_sell_by_amt = QUALITY_CHANGE[key][0]
+    @after_sell_by_amt = QUALITY_CHANGE[key][1]
   end
 
-  def validate_quality(item)
+  def self.validate_quality(item)
     item.quality = MAX_QUALITY if item.quality > MAX_QUALITY
     item.quality = MIN_QUALITY if item.quality < MIN_QUALITY
   end

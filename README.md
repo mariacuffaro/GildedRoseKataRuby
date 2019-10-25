@@ -18,7 +18,11 @@ These are the steps I took to get started...
 
 * -> ruby 'spec/texttest_fixture.rb' > new_output.txt
 * -> ruby 'spec/texttest_fixture_legacy.rb' > legacy_output.txt
-* -> diff 'new_output.txt' 'legacy_output.txt' - this showed some differences which I used to create new test cases for the new code
+* -> diff 'new_output.txt' 'legacy_output.txt' - this showed some differences which I used to
+
+create new test cases for the new code
+
+* Final refactor to turn into class methods rather than instance methods so that calling  GildedRose.update_quality(items) rather than GildedRose.new(items).update_quality() 
 
 
 ## Test instructions
